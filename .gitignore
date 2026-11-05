@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+results/cache/
+results/logs/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/main.pdf
+*.png.tmp

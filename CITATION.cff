@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this code or report, please cite it as below."
+title: "Barren Plateaus from Scratch: A NumPy State-Vector Study of Trainability in Variational Quantum Circuits"
+authors:
+  - family-names: "[Your family name]"
+    given-names: "[Your given name]"
+date-released: "2026-11-05"
+version: "1.0.0"
+license: MIT
+repository-code: "https://github.com/USER/bp-from-scratch"
+keywords:
+  - barren plateaus
+  - variational quantum algorithms
+  - state-vector simulation
+  - dynamical Lie algebra
