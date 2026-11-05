@@ -1,0 +1,1 @@
+{"family": "hva_tfim", "n": 10, "dim": 100, "capped": false, "purity_rho": 0.0087890625, "purity_H": 9216.0, "predicted_var": 0.81, "measured_var": 0.7573809958238502, "measured_var_ci": [0.6584396501476387, 0.8755572703667164], "cost_mean": 0.13628593520065013, "L": 60, "samples": 400, "seconds_dla": 0.0309258370000407, "edges": null, "full_dim": 1048575}

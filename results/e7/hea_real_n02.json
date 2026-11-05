@@ -1,0 +1,1 @@
+{"family": "hea_real", "n": 2, "dim": 6, "capped": false, "purity_rho": 0.25, "purity_H": 4.0, "predicted_var": 0.16666666666666666, "measured_var": 0.1659794196147887, "measured_var_ci": [0.14455206941241025, 0.1849237623675259], "cost_mean": 0.00842639832739013, "L": 60, "samples": 400, "seconds_dla": 8.230199978243036e-05, "edges": null, "full_dim": 15}
