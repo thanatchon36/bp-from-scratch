@@ -1,0 +1,19 @@
+{
+  "title": "bp-from-scratch",
+  "upload_type": "software",
+  "description": "A from-scratch NumPy state-vector simulator (qsim) with exact parameter-shift and adjoint gradients, and a reproducible numerical study of barren plateaus in variational quantum circuits on 2-16 qubits: closed-form Haar references, cost-function and initialisation dependence, training under shot noise, QAOA and exact dynamical Lie algebras. Companion software and data to the report \"Barren Plateaus from Scratch: A NumPy State-Vector Study of Trainability in Variational Quantum Circuits\" (https://thanatchon36.github.io/bp-from-scratch/paper/).",
+  "creators": [
+    {
+      "name": "Chongmankhong, Thanatchon"
+    }
+  ],
+  "license": "mit",
+  "keywords": ["barren plateaus", "variational quantum algorithms", "quantum computing", "state-vector simulation", "dynamical Lie algebra", "QAOA"],
+  "related_identifiers": [
+    {
+      "identifier": "https://thanatchon36.github.io/bp-from-scratch/paper/",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-report"
+    }
+  ]
+}

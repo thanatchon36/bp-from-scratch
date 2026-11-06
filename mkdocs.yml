@@ -1,0 +1,18 @@
+site_name: bp-from-scratch
+site_description: A from-scratch NumPy state-vector simulator and a reproducible numerical study of barren plateaus
+site_url: https://thanatchon36.github.io/bp-from-scratch/
+site_author: Thanatchon Chongmankhong
+repo_url: https://github.com/thanatchon36/bp-from-scratch
+repo_name: thanatchon36/bp-from-scratch
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  features: [navigation.sections, content.code.copy]
+strict: true
+nav:
+  - Home: index.md
+  - Paper: paper/index.html
+markdown_extensions:
+  - admonition
+  - tables

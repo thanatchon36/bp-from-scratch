@@ -12,3 +12,9 @@ paper/*.out
 paper/*.toc
 paper/main.pdf
 *.png.tmp
+.venv/
+site/
+.tools/
+paper/.web.tex
+paper/.mirror.tex
+paper/*.xdv

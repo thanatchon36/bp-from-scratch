@@ -8,12 +8,19 @@ version = "0.1.0"
 description = "A from-scratch NumPy state-vector simulator and a reproducible numerical study of barren plateaus in variational quantum circuits"
 readme = "README.md"
 requires-python = ">=3.10"
+authors = [{ name = "Thanatchon Chongmankhong" }]
+keywords = ["barren plateaus", "variational quantum algorithms", "quantum computing", "state-vector simulation", "dynamical Lie algebra"]
 dependencies = ["numpy>=1.24", "scipy>=1.10"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
   "Topic :: Scientific/Engineering :: Physics",
 ]
+
+[project.urls]
+Homepage = "https://github.com/thanatchon36/bp-from-scratch"
+Paper = "https://thanatchon36.github.io/bp-from-scratch/paper/"
+Issues = "https://github.com/thanatchon36/bp-from-scratch/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=7", "matplotlib>=3.7"]

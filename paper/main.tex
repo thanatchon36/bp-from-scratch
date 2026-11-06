@@ -1,4 +1,10 @@
 \documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\fi
+\usepackage{lmodern}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -7,6 +13,7 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\hypersetup{pdftitle={Barren Plateaus from Scratch: A NumPy State-Vector Study of Trainability in Variational Quantum Circuits},pdfauthor={Thanatchon Chongmankhong}}
 \captionsetup{font=small,labelfont=bf}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Tr}{\mathrm{Tr}}
@@ -14,7 +21,7 @@
 \newcommand{\E}{\mathbb{E}}
 
 \title{Barren Plateaus from Scratch:\\ \large A NumPy State-Vector Study of Trainability in Variational Quantum Circuits}
-\author{[Author name]\\ \small Code and data: \texttt{bp-from-scratch} (MIT licence)}
+\author{Thanatchon Chongmankhong\thanks{Code and data: \url{https://github.com/thanatchon36/bp-from-scratch} (MIT licence).}}
 \date{November 2026}
 
 \begin{document}
@@ -56,7 +63,7 @@ For a rotation $U_k$ write $U(\theta)=U_L U_k U_R$. If $U_L$ and $U_R$ are indep
   \Var[\partial_k C] = \frac{d\,\Tr H^2-(\Tr H)^2}{2(d+1)^2(d-1)},\qquad d=2^n .
   \label{eq:haar2}
 \end{equation}
-For a traceless Pauli string $H$ this is $\approx 1/(2d)=2^{-n}/2$; for the projector $H=|0\rangle\langle0|^{\otimes n}$ it is $\approx 4^{-n}/2$. If only one side is a 2-design the variance is still $O(2^{-n})$~\cite{mcclean2018}; the exact one-sided values are Eqs.~\eqref{eq:haarL}--\eqref{eq:haarR}. Cerezo et al.~\cite{cerezo2021} proved for alternating-layered ansätze that a \emph{global} cost (an operator acting non-trivially on all qubits) has exponentially small gradients at any depth, while a \emph{local} cost (a sum of few-body terms) has gradients bounded below by $1/\mathrm{poly}(n)$ for depth $L\in O(\log n)$. Ortiz Marrero et al.~\cite{ortiz2021} connected plateaus to the entanglement between the measured and unmeasured qubits. Grant et al.~\cite{grant2019} proposed initialising in blocks that compose to the identity, and Zhang et al.~\cite{zhang2022} proposed small-angle Gaussian initialisations. Finally, the Lie-algebraic theory~\cite{larocca2022,ragone2024,fontana2024} states that for deep circuits (a 2-design on $e^{\g}$) and $\rho$ or $H$ in $i\g$,
+For a traceless Pauli string $H$ this is $\approx 1/(2d)=2^{-n}/2$; for the projector $H=|0\rangle\langle0|^{\otimes n}$ it is $\approx 4^{-n}/2$. If only one side is a 2-design the variance is still $O(2^{-n})$~\cite{mcclean2018}; the exact one-sided values are Eqs.~\eqref{eq:haarL}--\eqref{eq:haarR}. Cerezo et al.~\cite{cerezo2021} proved for alternating-layered ans\"atze that a \emph{global} cost (an operator acting non-trivially on all qubits) has exponentially small gradients at any depth, while a \emph{local} cost (a sum of few-body terms) has gradients bounded below by $1/\mathrm{poly}(n)$ for depth $L\in O(\log n)$. Ortiz Marrero et al.~\cite{ortiz2021} connected plateaus to the entanglement between the measured and unmeasured qubits. Grant et al.~\cite{grant2019} proposed initialising in blocks that compose to the identity, and Zhang et al.~\cite{zhang2022} proposed small-angle Gaussian initialisations. Finally, the Lie-algebraic theory~\cite{larocca2022,ragone2024,fontana2024} states that for deep circuits (a 2-design on $e^{\g}$) and $\rho$ or $H$ in $i\g$,
 \begin{equation}
   \Var[C]=\frac{\mathcal P_\g(\rho)\,\mathcal P_\g(H)}{\dim\g},\qquad \mathcal P_\g(X)=\|X_\g\|_F^2,
   \label{eq:dla}
@@ -97,7 +104,7 @@ $n$ & forward (qsim) & adjoint gradient (qsim) & parameter shift (qsim) & \textt
 \section{Experimental protocol}
 \label{sec:protocol}
 
-\paragraph{Ansätze.}
+\paragraph{Ans\"atze.}
 (i) The random circuit of McClean et al.~\cite{mcclean2018} (``McClean HEA''): a fixed layer of $R_Y(\pi/4)$, then $L$ layers each consisting of one rotation per qubit about an axis drawn uniformly from $\{X,Y,Z\}$ and a CZ ladder on the open chain; the axes are redrawn for every sample. (ii) The RY--RZ hardware-efficient ansatz: $R_Y$ and $R_Z$ on every qubit followed by a CZ ladder (``RY--RZ HEA'') or by CZs in a brick pattern (``ALA'', the alternating-layered ansatz of~\cite{cerezo2021}). (iii) Identity blocks~\cite{grant2019}: $M$ blocks $B(\theta')A(\theta)$ with $A=[R_YR_Z]\,\mathrm{CZ}\,[R_YR_Z]$, $B=A^\dagger$ at initialisation. (iv) QAOA for MaxCut~\cite{farhi2014}: $|+\rangle^{\otimes n}$ followed by $p$ layers of $e^{-i\gamma\sum_E Z_iZ_j}e^{-i\beta\sum_i X_i}$. (v) Fully parameterised Pauli-rotation circuits for the DLA study (Sec.~\ref{sec:e7}).
 
 \paragraph{Costs.}
@@ -214,7 +221,7 @@ We consider four families whose gates are all Pauli rotations with their own par
 
 The results (Fig.~\ref{fig:e7}, Table~\ref{tab:dla}) show two polynomial and two exponential families. Family (a) generates the full $\mathfrak{su}(2^n)$ at every $n$ tested, and family (d) grows quickly ($15$ at $n=4$, $176$ at $n=6$). Family (b), despite looking like a generic hardware-efficient ansatz, has $\dim\g=n(2n-1)=6,15,28,45,66,91,120$: it is $\mathfrak{so}(2n)$, the algebra of quadratic forms in $2n$ Majorana operators --- under a Jordan--Wigner transformation $Y_i$ and $Z_iZ_{i+1}$ are quadratic in fermions, so this circuit is a free-fermion (matchgate-like) circuit~\cite{kokcu2022}. Family (c), with only two global generators, closes into an even smaller $n^2$-dimensional subalgebra. Equation~\eqref{eq:dla} is quantitatively accurate for (a), (b) and (c): the ratio of measured to predicted variance is $0.89$--$1.10$, $0.94$--$1.08$ and $0.86$--$1.22$ respectively (for $n\ge3$; median over all points $1.00$). The only clear failures are the smallest TFIM instance ($n=2$, ratio $0.32$) and QAOA (ratios $0.60$ and $0.59$), where a circuit with two parameters per layer evidently does not form a 2-design on $e^\g$ at $L=60$, which is the assumption behind Eq.~\eqref{eq:dla}.
 
-The polynomial algebra of family (b) has a direct consequence for trainability: for a cost in $\g$, $\Var[C]$ is $\Omega(1/n^2)$ rather than $2^{-n}$, and indeed the measured variances in Table~\ref{tab:dla} \emph{increase} with $n$ for (b) and (c) (because $\mathcal P_\g(\rho)\mathcal P_\g(H)$ grows faster than $\dim\g$). This does not contradict E1--E3, which use costs outside the algebra or ansätze with $Z$ rotations: adding a single rotation family ($R_X$) turns $\mathfrak{so}(2n)$ into $\mathfrak{su}(2^n)$.
+The polynomial algebra of family (b) has a direct consequence for trainability: for a cost in $\g$, $\Var[C]$ is $\Omega(1/n^2)$ rather than $2^{-n}$, and indeed the measured variances in Table~\ref{tab:dla} \emph{increase} with $n$ for (b) and (c) (because $\mathcal P_\g(\rho)\mathcal P_\g(H)$ grows faster than $\dim\g$). This does not contradict E1--E3, which use costs outside the algebra or ans\"atze with $Z$ rotations: adding a single rotation family ($R_X$) turns $\mathfrak{so}(2n)$ into $\mathfrak{su}(2^n)$.
 
 \section{Discussion and limitations}
 \label{sec:discussion}
@@ -228,6 +235,9 @@ All simulations are noiseless apart from the Gaussian shot-noise model of E5; no
 \section{Conclusion}
 
 A few hundred lines of NumPy, exact gradients and a few CPU-hours are enough to test the barren-plateau literature quantitatively rather than qualitatively. The main predictions --- $2^{-n}$ decay for 2-design circuits, $4^{-n}$ versus slow decay for global versus local costs, the benefit of small-angle initialisation, the absence of plateaus at fixed QAOA depth, and the Lie-algebraic variance formula --- all hold within the stated accuracies. Along the way we found that the approach to the plateau is non-monotonic and heavy-tailed, that it precedes the saturation of entanglement, that exact-gradient optimisation is blind to the plateau at these sizes while finite-shot optimisation is not, and that a common hardware-efficient family is secretly free-fermionic. The code, data and a single \texttt{make} target to regenerate every figure are released with this report.
+
+\section*{Code and data availability}
+The simulator, the ansatz and experiment scripts, the cached results for every data point and the scripts that regenerate every figure and table are available at \url{https://github.com/thanatchon36/bp-from-scratch} under the MIT licence; Appendix~\ref{app:repro} lists the commands.
 
 \appendix
 
@@ -291,27 +301,24 @@ python -m pytest -q                  # 58 tests
 BUDGET=100000 bash experiments/run_all.sh   # all experiments (results/*.json, ~1 CPU hour)
 python analysis/make_figures.py      # paper/figures/*.pdf, results/figures/*.png
 python analysis/make_tables.py       # paper/tables/*.tex
-cd paper && pdflatex main && pdflatex main
+bash paper/build.sh                  # PDF, web reader, Markdown mirror
 \end{verbatim}
 Every experiment script skips cached points, so an interrupted run resumes where it stopped. Figures and tables in this document were produced by exactly these commands from the committed \texttt{results/} directory.
 
-\paragraph{Note on references.}
-The bibliography below was compiled without access to a literature database; titles, venues and years should be verified against the original sources before reuse.
-
 \begin{thebibliography}{99}
-\bibitem{mcclean2018} J.~R. McClean, S. Boixo, V.~N. Smelyanskiy, R. Babbush, H. Neven, \emph{Barren plateaus in quantum neural network training landscapes}, Nat.\ Commun.\ \textbf{9}, 4812 (2018).
-\bibitem{cerezo2021} M. Cerezo, A. Sone, T. Volkoff, L. Cincio, P.~J. Coles, \emph{Cost function dependent barren plateaus in shallow parametrized quantum circuits}, Nat.\ Commun.\ \textbf{12}, 1791 (2021).
-\bibitem{ortiz2021} C. Ortiz Marrero, M. Kieferov\'a, N. Wiebe, \emph{Entanglement-induced barren plateaus}, PRX Quantum \textbf{2}, 040316 (2021).
-\bibitem{grant2019} E. Grant, L. Wossnig, M. Ostaszewski, M. Benedetti, \emph{An initialization strategy for addressing barren plateaus in parametrized quantum circuits}, Quantum \textbf{3}, 214 (2019).
-\bibitem{zhang2022} K. Zhang, L. Liu, M.-H. Hsieh, D. Tao, \emph{Escaping from the barren plateau via Gaussian initializations in deep variational quantum circuits}, NeurIPS (2022).
-\bibitem{larocca2022} M. Larocca, P. Czarnik, K. Sharma, G. Muraleedharan, P.~J. Coles, M. Cerezo, \emph{Diagnosing barren plateaus with tools from quantum optimal control}, Quantum \textbf{6}, 824 (2022).
-\bibitem{ragone2024} M. Ragone, B.~N. Bakalov, F. Sauvage, A.~F. Kemper, C. Ortiz Marrero, M. Larocca, M. Cerezo, \emph{A Lie algebraic theory of barren plateaus for deep parameterized quantum circuits}, Nat.\ Commun.\ \textbf{15}, 7172 (2024).
-\bibitem{fontana2024} E. Fontana et al., \emph{Characterizing barren plateaus in quantum ans\"atze with the adjoint representation}, Nat.\ Commun.\ \textbf{15}, 7171 (2024).
-\bibitem{larocca2025} M. Larocca, S. Thanasilp, S. Wang, K. Sharma, J. Biamonte, P.~J. Coles, L. Cincio, J.~R. McClean, Z. Holmes, M. Cerezo, \emph{Barren plateaus in variational quantum computing}, Nat.\ Rev.\ Phys.\ (2025).
-\bibitem{jones2020} T. Jones, J. Gacon, \emph{Efficient calculation of gradients in classical simulations of variational quantum algorithms}, arXiv:2009.02823 (2020).
-\bibitem{page1993} D.~N. Page, \emph{Average entropy of a subsystem}, Phys.\ Rev.\ Lett.\ \textbf{71}, 1291 (1993).
-\bibitem{farhi2014} E. Farhi, J. Goldstone, S. Gutmann, \emph{A quantum approximate optimization algorithm}, arXiv:1411.4028 (2014).
-\bibitem{kokcu2022} E. K\"okc\"u, T. Steckmann, Y. Wang, J.~K. Freericks, E.~F. Dumitrescu, A.~F. Kemper, \emph{Fixed depth Hamiltonian simulation via Cartan decomposition}, Phys.\ Rev.\ Lett.\ \textbf{129}, 070501 (2022).
+\bibitem{mcclean2018} J.~R. McClean, S. Boixo, V.~N. Smelyanskiy, R. Babbush, H. Neven, \emph{Barren plateaus in quantum neural network training landscapes}, Nat.\ Commun.\ \textbf{9}, 4812 (2018), \href{https://doi.org/10.1038/s41467-018-07090-4}{doi:10.1038/s41467-018-07090-4}.
+\bibitem{cerezo2021} M. Cerezo, A. Sone, T. Volkoff, L. Cincio, P.~J. Coles, \emph{Cost function dependent barren plateaus in shallow parametrized quantum circuits}, Nat.\ Commun.\ \textbf{12}, 1791 (2021), \href{https://doi.org/10.1038/s41467-021-21728-w}{doi:10.1038/s41467-021-21728-w}.
+\bibitem{ortiz2021} C. Ortiz Marrero, M. Kieferov\'a, N. Wiebe, \emph{Entanglement-induced barren plateaus}, PRX Quantum \textbf{2}, 040316 (2021), \href{https://doi.org/10.1103/PRXQuantum.2.040316}{doi:10.1103/PRXQuantum.2.040316}.
+\bibitem{grant2019} E. Grant, L. Wossnig, M. Ostaszewski, M. Benedetti, \emph{An initialization strategy for addressing barren plateaus in parametrized quantum circuits}, Quantum \textbf{3}, 214 (2019), \href{https://doi.org/10.22331/q-2019-12-09-214}{doi:10.22331/q-2019-12-09-214}.
+\bibitem{zhang2022} K. Zhang, L. Liu, M.-H. Hsieh, D. Tao, \emph{Escaping from the barren plateau via Gaussian initializations in deep variational quantum circuits}, Adv.\ Neural Inf.\ Process.\ Syst.\ \textbf{35}, 18612--18627 (2022), \href{https://arxiv.org/abs/2203.09376}{arXiv:2203.09376}.
+\bibitem{larocca2022} M. Larocca, P. Czarnik, K. Sharma, G. Muraleedharan, P.~J. Coles, M. Cerezo, \emph{Diagnosing barren plateaus with tools from quantum optimal control}, Quantum \textbf{6}, 824 (2022), \href{https://doi.org/10.22331/q-2022-09-29-824}{doi:10.22331/q-2022-09-29-824}.
+\bibitem{ragone2024} M. Ragone, B.~N. Bakalov, F. Sauvage, A.~F. Kemper, C. Ortiz Marrero, M. Larocca, M. Cerezo, \emph{A Lie algebraic theory of barren plateaus for deep parameterized quantum circuits}, Nat.\ Commun.\ \textbf{15}, 7172 (2024), \href{https://doi.org/10.1038/s41467-024-49909-3}{doi:10.1038/s41467-024-49909-3}.
+\bibitem{fontana2024} E. Fontana, D. Herman, S. Chakrabarti, N. Kumar, R. Yalovetzky, J. Heredge, S.~H. Sureshbabu, M. Pistoia, \emph{Characterizing barren plateaus in quantum ans\"atze with the adjoint representation}, Nat.\ Commun.\ \textbf{15}, 7171 (2024), \href{https://doi.org/10.1038/s41467-024-49910-w}{doi:10.1038/s41467-024-49910-w}.
+\bibitem{larocca2025} M. Larocca, S. Thanasilp, S. Wang, K. Sharma, J. Biamonte, P.~J. Coles, L. Cincio, J.~R. McClean, Z. Holmes, M. Cerezo, \emph{Barren plateaus in variational quantum computing}, Nat.\ Rev.\ Phys.\ \textbf{7}, 174--189 (2025), \href{https://doi.org/10.1038/s42254-025-00813-9}{doi:10.1038/s42254-025-00813-9}.
+\bibitem{jones2020} T. Jones, J. Gacon, \emph{Efficient calculation of gradients in classical simulations of variational quantum algorithms}, \href{https://arxiv.org/abs/2009.02823}{arXiv:2009.02823} (2020).
+\bibitem{page1993} D.~N. Page, \emph{Average entropy of a subsystem}, Phys.\ Rev.\ Lett.\ \textbf{71}, 1291--1294 (1993), \href{https://doi.org/10.1103/PhysRevLett.71.1291}{doi:10.1103/PhysRevLett.71.1291}.
+\bibitem{farhi2014} E. Farhi, J. Goldstone, S. Gutmann, \emph{A quantum approximate optimization algorithm}, \href{https://arxiv.org/abs/1411.4028}{arXiv:1411.4028} (2014).
+\bibitem{kokcu2022} E. K\"okc\"u, T. Steckmann, Y. Wang, J.~K. Freericks, E.~F. Dumitrescu, A.~F. Kemper, \emph{Fixed depth Hamiltonian simulation via Cartan decomposition}, Phys.\ Rev.\ Lett.\ \textbf{129}, 070501 (2022), \href{https://doi.org/10.1103/PhysRevLett.129.070501}{doi:10.1103/PhysRevLett.129.070501}.
 \end{thebibliography}
 
 \end{document}

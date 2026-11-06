@@ -1,15 +1,33 @@
 cff-version: 1.2.0
-message: "If you use this code or report, please cite it as below."
-title: "Barren Plateaus from Scratch: A NumPy State-Vector Study of Trainability in Variational Quantum Circuits"
+message: "Please cite the report (preferred-citation); if you use the qsim simulator or the data, also cite the software."
+title: "bp-from-scratch: a NumPy state-vector simulator and a reproducible study of barren plateaus"
+abstract: >-
+  A from-scratch NumPy state-vector simulator with exact parameter-shift and
+  adjoint gradients, and a reproducible numerical study of barren plateaus in
+  variational quantum circuits on 2-16 qubits: Haar references, cost-function
+  and initialisation dependence, training under shot noise, QAOA and exact
+  dynamical Lie algebras.
+type: software
 authors:
-  - family-names: "[Your family name]"
-    given-names: "[Your given name]"
-date-released: "2026-11-05"
-version: "1.0.0"
+  - family-names: Chongmankhong
+    given-names: Thanatchon
+version: 0.1.0
+date-released: 2026-11-05
 license: MIT
-repository-code: "https://github.com/USER/bp-from-scratch"
+repository-code: "https://github.com/thanatchon36/bp-from-scratch"
+url: "https://thanatchon36.github.io/bp-from-scratch/"
 keywords:
   - barren plateaus
   - variational quantum algorithms
   - state-vector simulation
   - dynamical Lie algebra
+preferred-citation:
+  type: report
+  title: "Barren Plateaus from Scratch: A NumPy State-Vector Study of Trainability in Variational Quantum Circuits"
+  authors:
+    - family-names: Chongmankhong
+      given-names: Thanatchon
+  year: 2026
+  month: 11
+  notes: "Technical report; arXiv identifier to be added after submission."
+  url: "https://thanatchon36.github.io/bp-from-scratch/paper/"
