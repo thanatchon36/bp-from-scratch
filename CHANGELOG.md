@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-06
+
 ### Added
 - Web reader of the paper (`docs/paper/`, served at https://thanatchon36.github.io/bp-from-scratch/paper/) and a
   Markdown mirror (`paper/paper.md`), both generated from `paper/main.tex` by `make paper`.

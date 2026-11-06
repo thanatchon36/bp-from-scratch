@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bp-from-scratch"
-version = "0.1.0"
+version = "0.2.0"
 description = "A from-scratch NumPy state-vector simulator and a reproducible numerical study of barren plateaus in variational quantum circuits"
 readme = "README.md"
 requires-python = ">=3.10"
