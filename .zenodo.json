@@ -8,12 +8,24 @@
     }
   ],
   "license": "mit",
-  "keywords": ["barren plateaus", "variational quantum algorithms", "quantum computing", "state-vector simulation", "dynamical Lie algebra", "QAOA"],
+  "keywords": [
+    "barren plateaus",
+    "variational quantum algorithms",
+    "quantum computing",
+    "state-vector simulation",
+    "dynamical Lie algebra",
+    "QAOA"
+  ],
   "related_identifiers": [
     {
       "identifier": "https://thanatchon36.github.io/bp-from-scratch/paper/",
       "relation": "isDocumentedBy",
       "resource_type": "publication-report"
+    },
+    {
+      "identifier": "https://huggingface.co/datasets/thanatchon36/bp-from-scratch",
+      "relation": "isSupplementedBy",
+      "resource_type": "dataset"
     }
   ]
 }

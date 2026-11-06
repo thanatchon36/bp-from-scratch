@@ -8,10 +8,12 @@
 [![Python](https://img.shields.io/badge/python-%E2%89%A53.10-blue)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23995487.svg)](https://doi.org/10.5281/zenodo.23995487)
+[![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20dataset-bp--from--scratch-ffcc4d)](https://huggingface.co/datasets/thanatchon36/bp-from-scratch)
 
 📄 **[Read the paper on the web](https://thanatchon36.github.io/bp-from-scratch/paper/)** ·
 ⬇️ **[Download the PDF](https://github.com/thanatchon36/bp-from-scratch/raw/main/paper/paper.pdf)** ·
 📝 **[Markdown mirror](paper/paper.md)** ·
+🤗 **[Dataset](https://huggingface.co/datasets/thanatchon36/bp-from-scratch)** ·
 🔁 **[Reproduce](#reproduce)**
 
 **A from-scratch NumPy state-vector simulator and a reproducible numerical study of barren plateaus.** Barren
@@ -135,6 +137,10 @@ make results   # BUDGET=100000 bash experiments/run_all.sh: all experiments, cac
 make paper     # figures and tables from results/, then the PDF (Tectonic), web reader and Markdown mirror (pandoc)
 make arxiv     # dist/arxiv/bp-from-scratch-arxiv.tar.gz
 ```
+
+The cached results are also on Hugging Face as [`thanatchon36/bp-from-scratch`](https://huggingface.co/datasets/thanatchon36/bp-from-scratch): one Parquet table per
+experiment, loadable with `datasets` or pandas, plus the raw JSON cache. Put its `raw/` folder in place of
+`results/` to rebuild the paper without re-running anything.
 
 Experiment scripts are in `experiments/` (`e0_haar_check.py` to `e7_dla.py`), ansätze in `ansatz/`, and the DLA
 code in `qsim/dla.py`. Every experiment script skips cached points, so an interrupted run resumes where it stopped.

@@ -559,7 +559,7 @@ A few hundred lines of NumPy, exact gradients and a few CPU-hours are enough to 
 
 # Code and data availability
 
-The simulator, the ansatz and experiment scripts, the cached results for every data point and the scripts that regenerate every figure and table are available at <https://github.com/thanatchon36/bp-from-scratch> under the MIT licence and archived on Zenodo ([doi:10.5281/zenodo.23995488](https://doi.org/10.5281/zenodo.23995488), version 0.2.0); Appendix <a href="#app:repro" data-reference-type="ref" data-reference="app:repro">10</a> lists the commands.
+The simulator, the ansatz and experiment scripts, the cached results for every data point and the scripts that regenerate every figure and table are available at <https://github.com/thanatchon36/bp-from-scratch> under the MIT licence and archived on Zenodo ([doi:10.5281/zenodo.23995488](https://doi.org/10.5281/zenodo.23995488), version 0.2.0). The results are also published as a dataset at <https://huggingface.co/datasets/thanatchon36/bp-from-scratch>; Appendix <a href="#app:repro" data-reference-type="ref" data-reference="app:repro">10</a> lists the commands.
 
 # Haar averages of the gradient variance
 
