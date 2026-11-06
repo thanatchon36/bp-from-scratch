@@ -6,6 +6,9 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Zenodo archive of every release: concept DOI 10.5281/zenodo.23995487 (v0.2.0 is 10.5281/zenodo.23995488) in the README, `CITATION.cff` and the paper.
+
 ## [0.2.0] - 2026-11-06
 
 ### Added

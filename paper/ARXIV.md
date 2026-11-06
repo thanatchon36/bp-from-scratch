@@ -3,6 +3,8 @@
 The LaTeX source is arXiv-ready: it compiles with pdfLaTeX from TeX Live (the engine arXiv uses) without
 errors or undefined references, and the bibliography is inline, so no `.bib` or `.bbl` file is needed.
 Every reference was checked against Crossref (DOI) or the arXiv API and carries its DOI or arXiv identifier.
+The code and data are archived on Zenodo: concept DOI 10.5281/zenodo.23995487, version 0.2.0 is 10.5281/zenodo.23995488 (cited in
+"Code and data availability").
 
 ## Build the upload
 

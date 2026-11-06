@@ -7,6 +7,7 @@
 [![PDF](https://img.shields.io/badge/paper-PDF-b2182b)](https://github.com/thanatchon36/bp-from-scratch/raw/main/paper/paper.pdf)
 [![Python](https://img.shields.io/badge/python-%E2%89%A53.10-blue)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23995487.svg)](https://doi.org/10.5281/zenodo.23995487)
 
 📄 **[Read the paper on the web](https://thanatchon36.github.io/bp-from-scratch/paper/)** ·
 ⬇️ **[Download the PDF](https://github.com/thanatchon36/bp-from-scratch/raw/main/paper/paper.pdf)** ·
@@ -184,7 +185,9 @@ The paper's bibliography lists all 13 references with DOIs or arXiv identifiers.
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff). License: MIT.
+See [`CITATION.cff`](CITATION.cff). License: MIT. Every release is archived on Zenodo; the concept DOI
+[10.5281/zenodo.23995487](https://doi.org/10.5281/zenodo.23995487) always resolves to the latest version (v0.2.0 is
+[10.5281/zenodo.23995488](https://doi.org/10.5281/zenodo.23995488)).
 
 ```bibtex
 @techreport{chongmankhong2026barren,
@@ -193,5 +196,14 @@ See [`CITATION.cff`](CITATION.cff). License: MIT.
   year   = {2026},
   type   = {Technical report},
   url    = {https://thanatchon36.github.io/bp-from-scratch/paper/}
+}
+
+@software{chongmankhong2026bpfromscratch,
+  author  = {Chongmankhong, Thanatchon},
+  title   = {bp-from-scratch: a NumPy state-vector simulator and a reproducible study of barren plateaus},
+  year    = {2026},
+  version = {0.2.0},
+  doi     = {10.5281/zenodo.23995487},
+  url     = {https://doi.org/10.5281/zenodo.23995487}
 }
 ```

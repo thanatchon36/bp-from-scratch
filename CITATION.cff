@@ -13,6 +13,14 @@ authors:
     given-names: Thanatchon
 version: 0.2.0
 date-released: 2026-11-06
+doi: 10.5281/zenodo.23995487
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23995487
+    description: "Concept DOI, resolves to the latest version"
+  - type: doi
+    value: 10.5281/zenodo.23995488
+    description: "Version 0.2.0"
 license: MIT
 repository-code: "https://github.com/thanatchon36/bp-from-scratch"
 url: "https://thanatchon36.github.io/bp-from-scratch/"
