@@ -196,17 +196,20 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <div id="tab:bench">
 <table>
 <caption><span class="cap-label">Table 1.</span> Forward pass of a 10-layer hardware-efficient ansatz (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>n</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">2nL</annotation></semantics></math> parameters) and its full gradient; PennyLane 0.45 forward passes for the same circuit. Single core, NumPy 2.5, Python 3.12. <code>lightning.qubit</code> is a compiled C++ backend.</caption>
-<thead>
-<tr>
-<th style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math></th>
-<th style="text-align: right;">forward (qsim)</th>
-<th style="text-align: right;">adjoint gradient (qsim)</th>
-<th style="text-align: right;">parameter shift (qsim)</th>
-<th style="text-align: right;"><code>default.qubit</code></th>
-<th style="text-align: right;"><code>lightning.qubit</code></th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td colspan="3" style="text-align: center;"><code>qsim</code></td>
+<td colspan="2" style="text-align: center;">PennyLane, forward pass</td>
+</tr>
+<tr>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math></td>
+<td style="text-align: right;">forward</td>
+<td style="text-align: right;">adjoint gradient</td>
+<td style="text-align: right;">parameter shift</td>
+<td style="text-align: right;"><code>default.qubit</code></td>
+<td style="text-align: right;"><code>lightning.qubit</code></td>
+</tr>
 <tr>
 <td style="text-align: center;">8</td>
 <td style="text-align: right;">2.5 ms</td>
@@ -257,17 +260,20 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 </figure>
 <div id="tab:slopes">
 <table>
-<caption><span class="cap-label">Table 2.</span> E1: fitted decay exponents of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">[</mo><msub><mi>∂</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow></msub><mi>C</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\log_2\mathrm{Var}[\partial_\mathrm{mid}C]</annotation></semantics></math> versus <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">n\ge6</annotation></semantics></math>), the ratio of the measured variance to the two-sided Haar value at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">n=16</annotation></semantics></math>, and the kurtosis of the derivative at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">n=16</annotation></semantics></math>.</caption>
-<thead>
-<tr>
-<th style="text-align: center;">depth <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math></th>
-<th style="text-align: center;">slope of <span class="math inline">$\log_2\mathrm{Var}[\partial_{\rm mid}C]$</span></th>
-<th style="text-align: center;">slope (mean over params)</th>
-<th style="text-align: center;">Var/Haar at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi mathvariant="normal">max</mi></msub><annotation encoding="application/x-tex">n_{\max}</annotation></semantics></math></th>
-<th style="text-align: center;">kurtosis at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi mathvariant="normal">max</mi></msub><annotation encoding="application/x-tex">n_{\max}</annotation></semantics></math></th>
-</tr>
-</thead>
+<caption><span class="cap-label">Table 2.</span> E1: fitted decay exponents of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">r</mi></mrow></mrow><annotation encoding="application/x-tex">\log_2\mathrm{Var}</annotation></semantics></math> versus <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">n\ge6</annotation></semantics></math>) for the middle-layer derivative and for the variance averaged over all parameters; the ratio of the measured variance to the two-sided Haar value and the kurtosis of the middle-layer derivative, both at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">n=16</annotation></semantics></math>.</caption>
 <tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td colspan="2" style="text-align: center;">decay exponent of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">r</mi></mrow></mrow><annotation encoding="application/x-tex">\log_2\mathrm{Var}</annotation></semantics></math></td>
+<td colspan="2" style="text-align: center;">at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">n = 16</annotation></semantics></math></td>
+</tr>
+<tr>
+<td style="text-align: center;">depth <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math></td>
+<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow></msub><mi>C</mi></mrow><annotation encoding="application/x-tex">\partial_\mathrm{mid}C</annotation></semantics></math></td>
+<td style="text-align: center;">mean over parameters</td>
+<td style="text-align: center;">Var/Haar</td>
+<td style="text-align: center;">kurtosis</td>
+</tr>
 <tr>
 <td style="text-align: center;">2</td>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>0.98</mn></mrow><annotation encoding="application/x-tex">-0.98</annotation></semantics></math></td>
@@ -356,7 +362,10 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">global, exact: mean fidelity</td>
+<td colspan="7" style="text-align: left;"><em>global cost, exact gradients</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean fidelity</td>
 <td style="text-align: center;">1.000</td>
 <td style="text-align: center;">1.000</td>
 <td style="text-align: center;">1.000</td>
@@ -365,7 +374,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">1.000</td>
 </tr>
 <tr>
-<td style="text-align: left;">global, exact: fraction with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>&gt;</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">F&gt;0.9</annotation></semantics></math></td>
+<td style="text-align: left;">  fraction with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>&gt;</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">F&gt;0.9</annotation></semantics></math></td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.00</td>
@@ -374,16 +383,19 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">1.00</td>
 </tr>
 <tr>
-<td style="text-align: left;">global: mean <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="postfix">∥</mo><mi>∇</mi><mi>C</mi><mo stretchy="false" form="postfix">∥</mo></mrow><annotation encoding="application/x-tex">\|\nabla C\|</annotation></semantics></math> at init</td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.64</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.64\times10^{-1}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4.58</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">4.58\times10^{-2}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.81</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2.81\times10^{-2}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4.53</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">4.53\times10^{-3}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.16</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2.16\times10^{-3}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.48</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.48\times10^{-4}</annotation></semantics></math></td>
+<td style="text-align: left;">  mean <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="postfix">∥</mo><mi>∇</mi><mi>C</mi><mo stretchy="false" form="postfix">∥</mo></mrow><annotation encoding="application/x-tex">\|\nabla C\|</annotation></semantics></math> at initialisation</td>
+<td style="text-align: center;">0.16</td>
+<td style="text-align: center;">0.046</td>
+<td style="text-align: center;">0.028</td>
+<td style="text-align: center;">0.0045</td>
+<td style="text-align: center;">0.0022</td>
+<td style="text-align: center;">0.00015</td>
 </tr>
 <tr>
-<td style="text-align: left;">local, exact: mean fidelity</td>
+<td colspan="7" style="text-align: left;"><em>local cost, exact gradients</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean fidelity</td>
 <td style="text-align: center;">1.000</td>
 <td style="text-align: center;">1.000</td>
 <td style="text-align: center;">1.000</td>
@@ -392,7 +404,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">1.000</td>
 </tr>
 <tr>
-<td style="text-align: left;">local, exact: fraction with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>&gt;</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">F&gt;0.9</annotation></semantics></math></td>
+<td style="text-align: left;">  fraction with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>&gt;</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">F&gt;0.9</annotation></semantics></math></td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.00</td>
@@ -401,16 +413,19 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">1.00</td>
 </tr>
 <tr>
-<td style="text-align: left;">local: mean <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="postfix">∥</mo><mi>∇</mi><mi>C</mi><mo stretchy="false" form="postfix">∥</mo></mrow><annotation encoding="application/x-tex">\|\nabla C\|</annotation></semantics></math> at init</td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.36</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2.36\times10^{-1}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.92</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.92\times10^{-1}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.59</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.59\times10^{-1}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.42</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.42\times10^{-1}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.30</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.30\times10^{-1}</annotation></semantics></math></td>
-<td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.22</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.22\times10^{-1}</annotation></semantics></math></td>
+<td style="text-align: left;">  mean <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="postfix">∥</mo><mi>∇</mi><mi>C</mi><mo stretchy="false" form="postfix">∥</mo></mrow><annotation encoding="application/x-tex">\|\nabla C\|</annotation></semantics></math> at initialisation</td>
+<td style="text-align: center;">0.24</td>
+<td style="text-align: center;">0.19</td>
+<td style="text-align: center;">0.16</td>
+<td style="text-align: center;">0.14</td>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">0.12</td>
 </tr>
 <tr>
-<td style="text-align: left;">global, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>4</mn></msup><annotation encoding="application/x-tex">10^4</annotation></semantics></math> shots: mean fidelity</td>
+<td colspan="7" style="text-align: left;"><em>global cost, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>4</mn></msup><annotation encoding="application/x-tex">10^4</annotation></semantics></math> shots</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean fidelity</td>
 <td style="text-align: center;">0.999</td>
 <td style="text-align: center;">0.999</td>
 <td style="text-align: center;">0.999</td>
@@ -419,7 +434,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">0.250</td>
 </tr>
 <tr>
-<td style="text-align: left;">global, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>4</mn></msup><annotation encoding="application/x-tex">10^4</annotation></semantics></math> shots: fraction with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>&gt;</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">F&gt;0.9</annotation></semantics></math></td>
+<td style="text-align: left;">  fraction with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>&gt;</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">F&gt;0.9</annotation></semantics></math></td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.00</td>
@@ -428,7 +443,10 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">0.25</td>
 </tr>
 <tr>
-<td style="text-align: left;">local, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>4</mn></msup><annotation encoding="application/x-tex">10^4</annotation></semantics></math> shots: mean fidelity</td>
+<td colspan="7" style="text-align: left;"><em>local cost, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>4</mn></msup><annotation encoding="application/x-tex">10^4</annotation></semantics></math> shots</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean fidelity</td>
 <td style="text-align: center;">0.998</td>
 <td style="text-align: center;">0.994</td>
 <td style="text-align: center;">0.991</td>
@@ -437,7 +455,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">0.967</td>
 </tr>
 <tr>
-<td style="text-align: left;">local, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mn>4</mn></msup><annotation encoding="application/x-tex">10^4</annotation></semantics></math> shots: fraction with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>&gt;</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">F&gt;0.9</annotation></semantics></math></td>
+<td style="text-align: left;">  fraction with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>&gt;</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">F&gt;0.9</annotation></semantics></math></td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.00</td>
@@ -479,7 +497,10 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>4</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">4^n-1</annotation></semantics></math></td>
+<td colspan="10" style="text-align: left;"><em>DLA dimension</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>4</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">4^n-1</annotation></semantics></math></td>
 <td style="text-align: center;">15</td>
 <td style="text-align: center;">63</td>
 <td style="text-align: center;">255</td>
@@ -491,7 +512,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">1048575</td>
 </tr>
 <tr>
-<td style="text-align: left;">HEA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>X</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Z</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{X_i,Y_i,Z_iZ_{i+1}\}</annotation></semantics></math></td>
+<td style="text-align: left;">  HEA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>X</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Z</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{X_i,Y_i,Z_iZ_{i+1}\}</annotation></semantics></math></td>
 <td style="text-align: center;">15</td>
 <td style="text-align: center;">63</td>
 <td style="text-align: center;">255</td>
@@ -503,7 +524,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">–</td>
 </tr>
 <tr>
-<td style="text-align: left;">HEA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Z</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{Y_i,Z_iZ_{i+1}\}</annotation></semantics></math></td>
+<td style="text-align: left;">  HEA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Z</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{Y_i,Z_iZ_{i+1}\}</annotation></semantics></math></td>
 <td style="text-align: center;">6</td>
 <td style="text-align: center;">15</td>
 <td style="text-align: center;">28</td>
@@ -515,7 +536,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">–</td>
 </tr>
 <tr>
-<td style="text-align: left;">QAOA MaxCut</td>
+<td style="text-align: left;">  QAOA MaxCut</td>
 <td style="text-align: center;">–</td>
 <td style="text-align: center;">–</td>
 <td style="text-align: center;">15</td>
@@ -527,7 +548,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">–</td>
 </tr>
 <tr>
-<td style="text-align: left;">HVA TFIM</td>
+<td style="text-align: left;">  HVA TFIM</td>
 <td style="text-align: center;">4</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">16</td>
@@ -539,7 +560,10 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">100</td>
 </tr>
 <tr>
-<td style="text-align: left;">HEA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>X</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Z</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{X_i,Y_i,Z_iZ_{i+1}\}</annotation></semantics></math> (meas./pred.)</td>
+<td colspan="10" style="text-align: left;"><em>measured / predicted <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">[</mo><mi>C</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\mathrm{Var}[C]</annotation></semantics></math></em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  HEA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>X</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Z</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{X_i,Y_i,Z_iZ_{i+1}\}</annotation></semantics></math></td>
 <td style="text-align: center;">1.09</td>
 <td style="text-align: center;">0.94</td>
 <td style="text-align: center;">1.04</td>
@@ -551,7 +575,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">–</td>
 </tr>
 <tr>
-<td style="text-align: left;">HEA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Z</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{Y_i,Z_iZ_{i+1}\}</annotation></semantics></math> (meas./pred.)</td>
+<td style="text-align: left;">  HEA <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Z</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{Y_i,Z_iZ_{i+1}\}</annotation></semantics></math></td>
 <td style="text-align: center;">1.00</td>
 <td style="text-align: center;">1.08</td>
 <td style="text-align: center;">1.02</td>
@@ -563,7 +587,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">–</td>
 </tr>
 <tr>
-<td style="text-align: left;">QAOA MaxCut (meas./pred.)</td>
+<td style="text-align: left;">  QAOA MaxCut</td>
 <td style="text-align: center;">–</td>
 <td style="text-align: center;">–</td>
 <td style="text-align: center;">0.60</td>
@@ -575,7 +599,7 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;">–</td>
 </tr>
 <tr>
-<td style="text-align: left;">HVA TFIM (meas./pred.)</td>
+<td style="text-align: left;">  HVA TFIM</td>
 <td style="text-align: center;">0.32</td>
 <td style="text-align: center;">1.22</td>
 <td style="text-align: center;">0.86</td>
@@ -604,8 +628,9 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <h1 data-number="8" id="app:haar"><span class="header-section-number">A</span> Haar averages of the gradient variance</h1>
 <p>Write the circuit around a rotation with Pauli generator <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>G</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\mathrm{Tr}G=0</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>G</mi><mn>2</mn></msup><mo>=</mo><mn>𝟙</mn></mrow><annotation encoding="application/x-tex">G^2=\mathbb 1</annotation></semantics></math>) as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>=</mo><msub><mi>U</mi><mi>L</mi></msub><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>U</mi><mi>R</mi></msub></mrow><annotation encoding="application/x-tex">U=U_LR(\theta)U_R</annotation></semantics></math>, let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><msubsup><mi>U</mi><mi>L</mi><mo>†</mo></msubsup><mi>H</mi><msub><mi>U</mi><mi>L</mi></msub></mrow><annotation encoding="application/x-tex">A=U_L^\dagger HU_L</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>U</mi><mi>R</mi></msub><msub><mi>ρ</mi><mn>0</mn></msub><msubsup><mi>U</mi><mi>R</mi><mo>†</mo></msubsup><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><msup><mo stretchy="false" form="postfix">)</mo><mo>†</mo></msup></mrow><annotation encoding="application/x-tex">\sigma=R(\theta)U_R\rho_0U_R^\dagger R(\theta)^\dagger</annotation></semantics></math> with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mn>0</mn></msub><mo>=</mo><mo stretchy="false" form="prefix">|</mo><mn>0</mn><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="prefix">⟨</mo><mn>0</mn><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">\rho_0=|0\rangle\langle0|</annotation></semantics></math>. Since <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">[</mo><mi>A</mi><mspace width="0.167em"></mspace><mi>σ</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">C=\mathrm{Tr}[A\,\sigma]</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>θ</mi></msub><mi>σ</mi><mo>=</mo><mi>−</mi><mstyle displaystyle="false"><mfrac><mi>i</mi><mn>2</mn></mfrac></mstyle><mo stretchy="false" form="prefix">[</mo><mi>G</mi><mo>,</mo><mi>σ</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\partial_\theta\sigma=-\tfrac i2[G,\sigma]</annotation></semantics></math>, <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∂</mi><mi>θ</mi></msub><mi>C</mi><mo>=</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="prefix">[</mo><mi>G</mi><mo>,</mo><mi>A</mi><mo stretchy="false" form="postfix">]</mo><mspace width="0.167em"></mspace><mi>σ</mi><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">)</mo><mo>=</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">(</mo><mi>A</mi><mspace width="0.167em"></mspace><mi>K</mi><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>K</mi><mo>=</mo><mi>i</mi><mo stretchy="false" form="prefix">[</mo><mi>σ</mi><mo>,</mo><mi>G</mi><mo stretchy="false" form="postfix">]</mo><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">(4)</mtext></mrow><annotation encoding="application/x-tex">\begin{equation}
   \partial_\theta C=\tfrac12\mathrm{Tr}\big(i[G,A]\,\sigma\big)=\tfrac12\mathrm{Tr}\big(A\,K\big),\qquad K=i[\sigma,G],\qquad\text{(4)}
-\end{equation}</annotation></semantics></math> with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo stretchy="false" form="prefix">[</mo><mi>G</mi><mo>,</mo><mi>A</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">i[G,A]</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> Hermitian and traceless. We use the standard second moments of a Haar-random pure state <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> in dimension <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝔼</mi><mi>σ</mi></msub><mo stretchy="false" form="prefix">[</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mi>σ</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">[</mo><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>B</mi><mn>2</mn></msup><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">]</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\mathbb{E}_\sigma[\mathrm{Tr}(B\sigma)^2]=\big[(\mathrm{Tr}B)^2+\mathrm{Tr}B^2\big]/(d(d+1))</annotation></semantics></math>, and of a Haar-random unitary, <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>𝔼</mi><mi>U</mi></msub><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>U</mi><mi>A</mi><msup><mi>U</mi><mo>†</mo></msup><mi>B</mi><mspace width="0.167em"></mspace><mi>U</mi><mi>C</mi><msup><mi>U</mi><mo>†</mo></msup><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mfrac><mrow><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>C</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mi>C</mi><mo stretchy="false" form="postfix">)</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>D</mi></mrow><mrow><msup><mi>d</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow></mfrac><mo>−</mo><mfrac><mrow><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>C</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>D</mi><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mi>C</mi><mo stretchy="false" form="postfix">)</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>d</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>d</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">(5)</mtext></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>𝔼</mi><mi>U</mi></msub><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>U</mi><mi>A</mi><msup><mi>U</mi><mo>†</mo></msup><mi>B</mi><mo stretchy="false" form="postfix">)</mo><msup><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">]</mo><mn>2</mn></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>A</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>B</mi><mn>2</mn></msup></mrow><mrow><msup><mi>d</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow></mfrac><mo>−</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>B</mi><mn>2</mn></msup><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>A</mi><mn>2</mn></msup><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mrow><mi>d</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>d</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mi>.</mi><mspace width="2.0em"></mspace><mtext mathvariant="normal">(6)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align}
-\mathbb{E}_U\mathrm{Tr}(UAU^\dagger B\,UCU^\dagger D)&amp;=\frac{\mathrm{Tr}A\mathrm{Tr}C\mathrm{Tr}(BD)+\mathrm{Tr}(AC)\mathrm{Tr}B\mathrm{Tr}D}{d^2-1}-\frac{\mathrm{Tr}A\mathrm{Tr}C\mathrm{Tr}B\mathrm{Tr}D+\mathrm{Tr}(AC)\mathrm{Tr}(BD)}{d(d^2-1)},\qquad\text{(5)}\\
+\end{equation}</annotation></semantics></math> with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo stretchy="false" form="prefix">[</mo><mi>G</mi><mo>,</mo><mi>A</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">i[G,A]</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi><annotation encoding="application/x-tex">K</annotation></semantics></math> Hermitian and traceless. We use the standard second moments of a Haar-random pure state <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> in dimension <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝔼</mi><mi>σ</mi></msub><mo stretchy="false" form="prefix">[</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mi>σ</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">[</mo><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>B</mi><mn>2</mn></msup><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">]</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\mathbb{E}_\sigma[\mathrm{Tr}(B\sigma)^2]=\big[(\mathrm{Tr}B)^2+\mathrm{Tr}B^2\big]/(d(d+1))</annotation></semantics></math>, and of a Haar-random unitary, <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>𝔼</mi><mi>U</mi></msub><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>U</mi><mi>A</mi><msup><mi>U</mi><mo>†</mo></msup><mi>B</mi><mspace width="0.167em"></mspace><mi>U</mi><mi>C</mi><msup><mi>U</mi><mo>†</mo></msup><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mfrac><mrow><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>C</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mi>C</mi><mo stretchy="false" form="postfix">)</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>D</mi></mrow><mrow><msup><mi>d</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow></mfrac></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mspace width="2.0em"></mspace><mo>−</mo><mfrac><mrow><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>C</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>D</mi><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mi>C</mi><mo stretchy="false" form="postfix">)</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>d</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>d</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">(5)</mtext></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>𝔼</mi><mi>U</mi></msub><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">[</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mo stretchy="false" form="prefix">(</mo><mi>U</mi><mi>A</mi><msup><mi>U</mi><mo>†</mo></msup><mi>B</mi><mo stretchy="false" form="postfix">)</mo><msup><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">]</mo><mn>2</mn></msup></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>A</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>B</mi><mn>2</mn></msup></mrow><mrow><msup><mi>d</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow></mfrac><mo>−</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>B</mi><mn>2</mn></msup><mo>+</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><msup><mi>A</mi><mn>2</mn></msup><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">r</mi></mrow><mi>B</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><mrow><mi>d</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>d</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mi>.</mi><mspace width="2.0em"></mspace><mtext mathvariant="normal">(6)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align}
+\mathbb{E}_U\mathrm{Tr}(UAU^\dagger B\,UCU^\dagger D)&amp;=\frac{\mathrm{Tr}A\mathrm{Tr}C\mathrm{Tr}(BD)+\mathrm{Tr}(AC)\mathrm{Tr}B\mathrm{Tr}D}{d^2-1}\nonumber\\
+&amp;\qquad-\frac{\mathrm{Tr}A\mathrm{Tr}C\mathrm{Tr}B\mathrm{Tr}D+\mathrm{Tr}(AC)\mathrm{Tr}(BD)}{d(d^2-1)},\qquad\text{(5)}\\
 \mathbb{E}_U\big[\mathrm{Tr}(UAU^\dagger B)\big]^2&amp;=\frac{(\mathrm{Tr}A)^2(\mathrm{Tr}B)^2+\mathrm{Tr}A^2\mathrm{Tr}B^2}{d^2-1}-\frac{(\mathrm{Tr}A)^2\mathrm{Tr}B^2+\mathrm{Tr}A^2(\mathrm{Tr}B)^2}{d(d^2-1)} .\qquad\text{(6)}
 \end{align}</annotation></semantics></math></p>
 <h4 class="unnumbered" id="random-circuit-after-the-rotation-only-u_rmathbb-1.">Random circuit after the rotation only (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mi>R</mi></msub><mo>=</mo><mn>𝟙</mn></mrow><annotation encoding="application/x-tex">U_R=\mathbb 1</annotation></semantics></math>).</h4>
@@ -633,11 +658,14 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <tr>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math></td>
 <td style="text-align: center;">simulated</td>
-<td style="text-align: center;">Eq. <a href="#eq:haar2" data-reference-type="eqref" data-reference="eq:haar2">[eq:haar2]</a></td>
+<td style="text-align: center;">Eq. (<a href="#eq:haar2">2</a>)</td>
 <td style="text-align: center;">simulated</td>
-<td style="text-align: center;">Eq. <a href="#eq:haarL" data-reference-type="eqref" data-reference="eq:haarL">[eq:haarL]</a></td>
+<td style="text-align: center;">Eq. (<a href="#eq:haarL">7</a>)</td>
 <td style="text-align: center;">simulated</td>
-<td style="text-align: center;">Eq. <a href="#eq:haarR" data-reference-type="eqref" data-reference="eq:haarR">[eq:haarR]</a></td>
+<td style="text-align: center;">Eq. (<a href="#eq:haarR">8</a>)</td>
+</tr>
+<tr>
+<td colspan="7" style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>=</mo><msup><mi>Z</mi><mrow><mi>⊗</mi><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">H = Z^{\otimes n}</annotation></semantics></math></td>
 </tr>
 <tr>
 <td style="text-align: center;">2</td>
@@ -701,6 +729,9 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.95</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1.95\times10^{-3}</annotation></semantics></math></td>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3.79</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">3.79\times10^{-3}</annotation></semantics></math></td>
 <td style="text-align: center;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3.89</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">3.89\times10^{-3}</annotation></semantics></math></td>
+</tr>
+<tr>
+<td colspan="7" style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>=</mo><mo stretchy="false" form="prefix">|</mo><mn>0</mn><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="prefix">⟨</mo><mn>0</mn><msup><mo stretchy="false" form="prefix">|</mo><mrow><mi>⊗</mi><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">H = |0\rangle\langle 0|^{\otimes n}</annotation></semantics></math></td>
 </tr>
 <tr>
 <td style="text-align: center;">2</td>
@@ -773,9 +804,9 @@ math[display="block"] { display: block; overflow-x: auto; overflow-y: hidden; ma
   \frac{\partial C}{\partial\theta_p}=\sum_{k:\,p(k)=p}2\,\mathrm{Re}\Big\langle\lambda_k\Big|\Big(-\tfrac i2 s_k\Big)G_k\Big|\psi_k\Big\rangle .\qquad\text{(9)}
 \end{equation}</annotation></semantics></math> Sweeping <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math> down to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> while applying <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>U</mi><mi>k</mi><mo>†</mo></msubsup><annotation encoding="application/x-tex">U_k^\dagger</annotation></semantics></math> to both <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>ψ</mi><mo stretchy="false" form="postfix">⟩</mo></mrow><annotation encoding="application/x-tex">|\psi\rangle</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>λ</mi><mo stretchy="false" form="postfix">⟩</mo></mrow><annotation encoding="application/x-tex">|\lambda\rangle</annotation></semantics></math> computes every term with three state-vector operations per gate and no extra memory [<a href="#ref-jones2020">10</a>]; shared parameters accumulate automatically. The parameter-shift rule, Eq. (<a href="#eq:pshift">1</a>), is applied to one gate occurrence at a time and summed; both agree with finite differences to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>10</mn><mrow><mi>−</mi><mn>10</mn></mrow></msup><annotation encoding="application/x-tex">10^{-10}</annotation></semantics></math> in the test suite.</p>
 <h1 data-number="10" id="app:repro"><span class="header-section-number">C</span> Reproduction</h1>
-<pre><code>pip install -e &quot;.[dev]&quot;              # add &quot;,compare&quot; for the PennyLane cross-checks
+<pre><code>pip install -e &quot;.[dev]&quot;              # or &quot;.[dev,compare]&quot; for PennyLane checks
 python -m pytest -q                  # 58 tests
-BUDGET=100000 bash experiments/run_all.sh   # all experiments (results/*.json, ~1 CPU hour)
+BUDGET=100000 bash experiments/run_all.sh   # all experiments, ~1 CPU hour
 python analysis/make_figures.py      # paper/figures/*.pdf, results/figures/*.png
 python analysis/make_tables.py       # paper/tables/*.tex
 bash paper/build.sh                  # PDF, web reader, Markdown mirror</code></pre>

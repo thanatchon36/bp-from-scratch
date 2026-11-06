@@ -2,16 +2,22 @@
 \toprule
 $n$ & 4 & 6 & 8 & 10 & 12 & 14 \\
 \midrule
-global, exact: mean fidelity & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\
-global, exact: fraction with $F>0.9$ & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
-global: mean $\|\nabla C\|$ at init & $1.64\times10^{-1}$ & $4.58\times10^{-2}$ & $2.81\times10^{-2}$ & $4.53\times10^{-3}$ & $2.16\times10^{-3}$ & $1.48\times10^{-4}$ \\
-local, exact: mean fidelity & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\
-local, exact: fraction with $F>0.9$ & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
-local: mean $\|\nabla C\|$ at init & $2.36\times10^{-1}$ & $1.92\times10^{-1}$ & $1.59\times10^{-1}$ & $1.42\times10^{-1}$ & $1.30\times10^{-1}$ & $1.22\times10^{-1}$ \\
+\multicolumn{7}{l}{\emph{global cost, exact gradients}} \\
+\quad mean fidelity & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\
+\quad fraction with $F>0.9$ & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
+\quad mean $\|\nabla C\|$ at initialisation & 0.16 & 0.046 & 0.028 & 0.0045 & 0.0022 & 0.00015 \\
+\addlinespace
+\multicolumn{7}{l}{\emph{local cost, exact gradients}} \\
+\quad mean fidelity & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\
+\quad fraction with $F>0.9$ & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
+\quad mean $\|\nabla C\|$ at initialisation & 0.24 & 0.19 & 0.16 & 0.14 & 0.13 & 0.12 \\
 \midrule
-global, $10^4$ shots: mean fidelity & 0.999 & 0.999 & 0.999 & 0.916 & 0.746 & 0.250 \\
-global, $10^4$ shots: fraction with $F>0.9$ & 1.00 & 1.00 & 1.00 & 0.92 & 0.75 & 0.25 \\
-local, $10^4$ shots: mean fidelity & 0.998 & 0.994 & 0.991 & 0.984 & 0.974 & 0.967 \\
-local, $10^4$ shots: fraction with $F>0.9$ & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
+\multicolumn{7}{l}{\emph{global cost, $10^4$ shots}} \\
+\quad mean fidelity & 0.999 & 0.999 & 0.999 & 0.916 & 0.746 & 0.250 \\
+\quad fraction with $F>0.9$ & 1.00 & 1.00 & 1.00 & 0.92 & 0.75 & 0.25 \\
+\addlinespace
+\multicolumn{7}{l}{\emph{local cost, $10^4$ shots}} \\
+\quad mean fidelity & 0.998 & 0.994 & 0.991 & 0.984 & 0.974 & 0.967 \\
+\quad fraction with $F>0.9$ & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
 \bottomrule
 \end{tabular}

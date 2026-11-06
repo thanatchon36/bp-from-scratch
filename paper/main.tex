@@ -15,6 +15,8 @@
 \usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
 \hypersetup{pdftitle={Barren Plateaus from Scratch: A NumPy State-Vector Study of Trainability in Variational Quantum Circuits},pdfauthor={Thanatchon Chongmankhong}}
 \captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{1.5em}
+\setlength{\tabcolsep}{5pt}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Tr}{\mathrm{Tr}}
 \newcommand{\g}{\mathfrak{g}}
@@ -80,7 +82,7 @@ The state is a flat, contiguous \texttt{complex128} array of $2^n$ amplitudes. A
 \texttt{qsim} implements Eq.~\eqref{eq:pshift} (shifting one gate occurrence at a time, so shared parameters are handled by summation) and the adjoint method. Both are checked against central finite differences on circuits with shared and scaled parameters, fixed gates, and generic two-qubit unitaries; they agree to $10^{-10}$.
 
 \paragraph{Verification.}
-Fifty-eight tests compare gate application with an independent \texttt{tensordot}/\texttt{moveaxis} implementation and with Kronecker-product matrices, check Bell/GHZ states, Pauli-sum operators against dense matrices, entanglement entropies against Bell/GHZ/Page values, the Pauli algebra used for DLAs against matrix products, and --- when PennyLane is installed --- states, expectation values and parameter-shift gradients of a 13-parameter circuit against \texttt{default.qubit} (agreement to $10^{-8}$).
+Fifty-eight tests compare gate application with an independent \texttt{tensordot}/\allowbreak\texttt{moveaxis} implementation and with Kronecker-product matrices, check Bell/GHZ states, Pauli-sum operators against dense matrices, entanglement entropies against Bell/GHZ/Page values, the Pauli algebra used for DLAs against matrix products, and --- when PennyLane is installed --- states, expectation values and parameter-shift gradients of a 13-parameter circuit against \texttt{default.qubit} (agreement to $10^{-8}$).
 
 \paragraph{Performance.}
 Table~\ref{tab:bench} lists wall-clock times on one CPU core for a hardware-efficient ansatz (RY, RZ on every qubit and a CNOT ladder, $L=10$). The adjoint gradient costs $\approx 4$--$5$ forward passes independently of the number of parameters; the parameter-shift gradient costs $2P$ forward passes and is only used for cross-checks.
@@ -89,7 +91,9 @@ Table~\ref{tab:bench} lists wall-clock times on one CPU core for a hardware-effi
 \centering\small
 \begin{tabular}{crrrrr}
 \toprule
-$n$ & forward (qsim) & adjoint gradient (qsim) & parameter shift (qsim) & \texttt{default.qubit} & \texttt{lightning.qubit} \\
+& \multicolumn{3}{c}{\texttt{qsim}} & \multicolumn{2}{c}{PennyLane, forward pass} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-6}
+$n$ & forward & adjoint gradient & parameter shift & \texttt{default.qubit} & \texttt{lightning.qubit} \\
 \midrule
 8  & 2.5\,ms & 11\,ms & 0.83\,s & 19\,ms & 9\,ms \\
 12 & 9.3\,ms & 34\,ms & --     & 35\,ms & 15\,ms \\
@@ -127,7 +131,7 @@ For every configuration we draw $N$ random parameter vectors (uniform on $[0,2\p
 \begin{table}[t]
 \centering\small
 \input{tables/slopes.tex}
-\caption{E1: fitted decay exponents of $\log_2\Var[\partial_{\rm mid}C]$ versus $n$ ($n\ge6$), the ratio of the measured variance to the two-sided Haar value at $n=16$, and the kurtosis of the derivative at $n=16$.}
+\caption{E1: fitted decay exponents of $\log_2\Var$ versus $n$ ($n\ge6$) for the middle-layer derivative and for the variance averaged over all parameters; the ratio of the measured variance to the two-sided Haar value and the kurtosis of the middle-layer derivative, both at $n=16$.}
 \label{tab:slopes}
 \end{table}
 
@@ -143,7 +147,7 @@ Figure~\ref{fig:e1}(a) shows the classic picture: at every depth the variance de
 \label{sec:e4}
 
 \begin{figure}[t]
-\centering\includegraphics[width=0.95\textwidth]{figures/fig_e4.pdf}
+\centering\includegraphics[width=\textwidth]{figures/fig_e4.pdf}
 \caption{(a) McClean HEA at $n=12$ on a fine depth grid: variance of $\partial_{\rm mid}C$ divided by Eq.~\eqref{eq:haar2}, and half-chain entanglement entropy of $U(\theta)|0\rangle$ divided by the Page value $S_{\rm Page}=3.66$ nats. (b) Half-chain entropy versus $n$ for the depths of E1; the dashed line is the exact Page value~\cite{page1993}.}
 \label{fig:e4}
 \end{figure}
@@ -154,7 +158,7 @@ Entanglement-induced plateaus~\cite{ortiz2021} suggest looking at the two quanti
 \label{sec:e2}
 
 \begin{figure}[t]
-\centering\includegraphics[width=0.95\textwidth]{figures/fig_e2.pdf}
+\centering\includegraphics[width=\textwidth]{figures/fig_e2.pdf}
 \caption{ALA (RY--RZ rotations, CZ bricks). Variance of the middle-layer derivative for (a) the global projector cost and (b) the local cost, versus $n$ for depths $L=1$--$16$. Dashed: two-sided Haar values, Eq.~\eqref{eq:haar2}, for each operator.}
 \label{fig:e2}
 \end{figure}
@@ -165,7 +169,7 @@ Figure~\ref{fig:e2} reproduces the central result of~\cite{cerezo2021}. For the 
 \label{sec:e3}
 
 \begin{figure}[t]
-\centering\includegraphics[width=0.95\textwidth]{figures/fig_e3.pdf}
+\centering\includegraphics[width=\textwidth]{figures/fig_e3.pdf}
 \caption{RY--RZ HEA with 20 CZ layers, local cost $\tfrac1n\sum_iX_i$. Mean-square derivative $\E[(\partial C)^2]$ at initialisation for (a) the first-layer and (b) the middle-layer parameter, for uniform angles, Gaussian angles of width $\sigma$, and the identity-block construction (10 blocks).}
 \label{fig:e3}
 \end{figure}
@@ -176,7 +180,7 @@ We report the mean square rather than the variance because the identity-block in
 \label{sec:e5}
 
 \begin{figure}[t]
-\centering\includegraphics[width=0.95\textwidth]{figures/fig_e5.pdf}
+\centering\includegraphics[width=\textwidth]{figures/fig_e5.pdf}
 \caption{Preparing $|0\rangle^{\otimes n}$ with a 4-layer ALA and Adam (250 steps, learning rate 0.05) from uniformly random angles. (a) Final fidelity (mean $\pm$ s.d.\ over seeds) for the global and local cost, with exact gradients and with Gaussian ``shot noise'' of standard deviation $(2\times10^4)^{-1/2}$ added to every cost and gradient entry. (b) Every run: exact initial gradient norm versus final fidelity.}
 \label{fig:e5}
 \end{figure}
@@ -194,7 +198,7 @@ A plateau at initialisation does not by itself prevent a classical simulation fr
 \label{sec:e6}
 
 \begin{figure}[t]
-\centering\includegraphics[width=0.95\textwidth]{figures/fig_e6.pdf}
+\centering\includegraphics[width=\textwidth]{figures/fig_e6.pdf}
 \caption{(a) Variance of $\partial C/\partial\gamma_1$ for QAOA on random 3-regular graphs (new graph and parameters for every sample; cost normalised by $|E|=3n/2$) versus $n$ for depths $p=1$--$8$, compared with the McClean HEA at $L=5$ and $10$ from E1. (b) Approximation ratio reached by Adam (150 steps) at $n=10$ versus $p$, for 3 graphs and 4 random starts each.}
 \label{fig:e6}
 \end{figure}
@@ -205,7 +209,7 @@ For the HEA the normalised variance decays with exponent $-1$; for QAOA at fixed
 \label{sec:e7}
 
 \begin{figure}[t]
-\centering\includegraphics[width=0.95\textwidth]{figures/fig_e7.pdf}
+\centering\includegraphics[width=\textwidth]{figures/fig_e7.pdf}
 \caption{(a) Exact DLA dimension versus $n$ for the four fully parameterised families; dashed: $\dim\mathfrak{su}(2^n)=4^n-1$. (b) Variance of the cost over uniformly random parameters of a 60-layer circuit (400 samples) versus the prediction of Eq.~\eqref{eq:dla}.}
 \label{fig:e7}
 \end{figure}
@@ -250,7 +254,8 @@ Write the circuit around a rotation with Pauli generator $G$ ($\Tr G=0$, $G^2=\m
 \end{equation}
 with $i[G,A]$ and $K$ Hermitian and traceless. We use the standard second moments of a Haar-random pure state $\sigma$ in dimension $d$, $\E_\sigma[\Tr(B\sigma)^2]=\big[(\Tr B)^2+\Tr B^2\big]/(d(d+1))$, and of a Haar-random unitary,
 \begin{align}
-\E_U\Tr(UAU^\dagger B\,UCU^\dagger D)&=\frac{\Tr A\Tr C\Tr(BD)+\Tr(AC)\Tr B\Tr D}{d^2-1}-\frac{\Tr A\Tr C\Tr B\Tr D+\Tr(AC)\Tr(BD)}{d(d^2-1)},\\
+\E_U\Tr(UAU^\dagger B\,UCU^\dagger D)&=\frac{\Tr A\Tr C\Tr(BD)+\Tr(AC)\Tr B\Tr D}{d^2-1}\nonumber\\
+&\qquad-\frac{\Tr A\Tr C\Tr B\Tr D+\Tr(AC)\Tr(BD)}{d(d^2-1)},\\
 \E_U\big[\Tr(UAU^\dagger B)\big]^2&=\frac{(\Tr A)^2(\Tr B)^2+\Tr A^2\Tr B^2}{d^2-1}-\frac{(\Tr A)^2\Tr B^2+\Tr A^2(\Tr B)^2}{d(d^2-1)} .
 \end{align}
 
@@ -296,9 +301,9 @@ Sweeping $k$ from $M$ down to $1$ while applying $U_k^\dagger$ to both $|\psi\ra
 \label{app:repro}
 
 \begin{verbatim}
-pip install -e ".[dev]"              # add ",compare" for the PennyLane cross-checks
+pip install -e ".[dev]"              # or ".[dev,compare]" for PennyLane checks
 python -m pytest -q                  # 58 tests
-BUDGET=100000 bash experiments/run_all.sh   # all experiments (results/*.json, ~1 CPU hour)
+BUDGET=100000 bash experiments/run_all.sh   # all experiments, ~1 CPU hour
 python analysis/make_figures.py      # paper/figures/*.pdf, results/figures/*.png
 python analysis/make_tables.py       # paper/tables/*.tex
 bash paper/build.sh                  # PDF, web reader, Markdown mirror

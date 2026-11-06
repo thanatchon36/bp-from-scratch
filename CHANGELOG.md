@@ -13,6 +13,14 @@ All notable changes to this project are documented here. The format follows
 - MkDocs site and GitHub Pages workflow, `CITATION.cff` with a preferred citation, and Zenodo metadata.
 
 ### Changed
+- Figures redrawn for print with a shared style (`analysis/figstyle.py`): drawn at the final 6.5 in text width
+  in 8 pt STIX with embedded Type 42 fonts, a single-hue blue ramp for ordered series (depth, qubits, QAOA depth,
+  initialisation width) and fixed categorical hues for the ansatz families, both checked for colour-vision
+  deficiency, theory references as black dashed lines, bold panel letters, and legends kept off the data.
+- Tables use booktabs grouped headers and indented row groups instead of long row labels, and the E5 gradient
+  norms are printed as decimals. No table, equation or code line overruns the text width any more.
+- The web reader and Markdown mirror inline the generated tables before pandoc runs, so equation references
+  inside tables are numbered and booktabs group headers render.
 - The paper names its author. Every reference has been checked against Crossref or the arXiv API, and each
   now carries its DOI or arXiv identifier.
 - `make paper` builds with Tectonic (`paper/build.sh`); the CI workflow is now `ci`, with pinned actions.

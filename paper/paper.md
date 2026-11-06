@@ -76,14 +76,56 @@ Table <a href="#tab:bench" data-reference-type="ref" data-reference="tab:bench"
 
 <div id="tab:bench">
 
-| $`n`$ | forward (qsim) | adjoint gradient (qsim) | parameter shift (qsim) | `default.qubit` | `lightning.qubit` |
-|:--:|---:|---:|---:|---:|---:|
-| 8 | 2.5 ms | 11 ms | 0.83 s | 19 ms | 9 ms |
-| 12 | 9.3 ms | 34 ms | – | 35 ms | 15 ms |
-| 16 | 0.13 s | 0.66 s | – | 0.28 s | 0.035 s |
-| 18 | 0.48 s | 4.2 s | – | 1.3 s | 0.11 s |
-
-Forward pass of a 10-layer hardware-efficient ansatz ($`2nL`$ parameters) and its full gradient; PennyLane 0.45 forward passes for the same circuit. Single core, NumPy 2.5, Python 3.12. `lightning.qubit` is a compiled C++ backend.
+<table>
+<caption>Forward pass of a 10-layer hardware-efficient ansatz (<span class="math inline">2<em>n</em><em>L</em></span> parameters) and its full gradient; PennyLane 0.45 forward passes for the same circuit. Single core, NumPy 2.5, Python 3.12. <code>lightning.qubit</code> is a compiled C++ backend.</caption>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td colspan="3" style="text-align: center;"><code>qsim</code></td>
+<td colspan="2" style="text-align: center;">PennyLane, forward pass</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline"><em>n</em></span></td>
+<td style="text-align: right;">forward</td>
+<td style="text-align: right;">adjoint gradient</td>
+<td style="text-align: right;">parameter shift</td>
+<td style="text-align: right;"><code>default.qubit</code></td>
+<td style="text-align: right;"><code>lightning.qubit</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: right;">2.5 ms</td>
+<td style="text-align: right;">11 ms</td>
+<td style="text-align: right;">0.83 s</td>
+<td style="text-align: right;">19 ms</td>
+<td style="text-align: right;">9 ms</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td style="text-align: right;">9.3 ms</td>
+<td style="text-align: right;">34 ms</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">35 ms</td>
+<td style="text-align: right;">15 ms</td>
+</tr>
+<tr>
+<td style="text-align: center;">16</td>
+<td style="text-align: right;">0.13 s</td>
+<td style="text-align: right;">0.66 s</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">0.28 s</td>
+<td style="text-align: right;">0.035 s</td>
+</tr>
+<tr>
+<td style="text-align: center;">18</td>
+<td style="text-align: right;">0.48 s</td>
+<td style="text-align: right;">4.2 s</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">1.3 s</td>
+<td style="text-align: right;">0.11 s</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -112,16 +154,65 @@ For every configuration we draw $`N`$ random parameter vectors (uniform on $`[0,
 
 <div id="tab:slopes">
 
-| depth $`L`$ | slope of $`\log_2\mathrm{Var}[\partial_{\rm mid}C]`$ | slope (mean over params) | Var/Haar at $`n_{\max}`$ | kurtosis at $`n_{\max}`$ |
-|:--:|:--:|:--:|:--:|:--:|
-| 2 | $`-0.98`$ | $`-0.97`$ | $`2.73`$ | $`55.4`$ |
-| 5 | $`-0.97`$ | $`-1.02`$ | $`1.29`$ | $`76.8`$ |
-| 10 | $`-1.00`$ | $`-1.05`$ | $`0.62`$ | $`20.6`$ |
-| 20 | $`-1.01`$ | $`-1.00`$ | $`0.71`$ | $`3.4`$ |
-| 50 | $`-1.01`$ | $`-1.00`$ | $`0.90`$ | $`3.1`$ |
-| Haar (two-sided) | $`-0.99`$ | – | 1 | 3 |
-
-E1: fitted decay exponents of $`\log_2\mathrm{Var}[\partial_\mathrm{mid}C]`$ versus $`n`$ ($`n\ge6`$), the ratio of the measured variance to the two-sided Haar value at $`n=16`$, and the kurtosis of the derivative at $`n=16`$.
+<table>
+<caption>E1: fitted decay exponents of <span class="math inline">log<sub>2</sub>Var</span> versus <span class="math inline"><em>n</em></span> (<span class="math inline"><em>n</em> ≥ 6</span>) for the middle-layer derivative and for the variance averaged over all parameters; the ratio of the measured variance to the two-sided Haar value and the kurtosis of the middle-layer derivative, both at <span class="math inline"><em>n</em> = 16</span>.</caption>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td colspan="2" style="text-align: center;">decay exponent of <span class="math inline">log<sub>2</sub>Var</span></td>
+<td colspan="2" style="text-align: center;">at <span class="math inline"><em>n</em> = 16</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">depth <span class="math inline"><em>L</em></span></td>
+<td style="text-align: center;"><span class="math inline">∂<sub>mid</sub><em>C</em></span></td>
+<td style="text-align: center;">mean over parameters</td>
+<td style="text-align: center;">Var/Haar</td>
+<td style="text-align: center;">kurtosis</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">−0.98</span></td>
+<td style="text-align: center;"><span class="math inline">−0.97</span></td>
+<td style="text-align: center;"><span class="math inline">2.73</span></td>
+<td style="text-align: center;"><span class="math inline">55.4</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><span class="math inline">−0.97</span></td>
+<td style="text-align: center;"><span class="math inline">−1.02</span></td>
+<td style="text-align: center;"><span class="math inline">1.29</span></td>
+<td style="text-align: center;"><span class="math inline">76.8</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;"><span class="math inline">−1.00</span></td>
+<td style="text-align: center;"><span class="math inline">−1.05</span></td>
+<td style="text-align: center;"><span class="math inline">0.62</span></td>
+<td style="text-align: center;"><span class="math inline">20.6</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;"><span class="math inline">−1.01</span></td>
+<td style="text-align: center;"><span class="math inline">−1.00</span></td>
+<td style="text-align: center;"><span class="math inline">0.71</span></td>
+<td style="text-align: center;"><span class="math inline">3.4</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;"><span class="math inline">−1.01</span></td>
+<td style="text-align: center;"><span class="math inline">−1.00</span></td>
+<td style="text-align: center;"><span class="math inline">0.90</span></td>
+<td style="text-align: center;"><span class="math inline">3.1</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">Haar (two-sided)</td>
+<td style="text-align: center;"><span class="math inline">−0.99</span></td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -169,20 +260,124 @@ We report the mean square rather than the variance because the identity-block in
 
 <div id="tab:training">
 
-| $`n`$ | 4 | 6 | 8 | 10 | 12 | 14 |
-|:---|:--:|:--:|:--:|:--:|:--:|:--:|
-| global, exact: mean fidelity | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
-| global, exact: fraction with $`F>0.9`$ | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
-| global: mean $`\|\nabla C\|`$ at init | $`1.64\times10^{-1}`$ | $`4.58\times10^{-2}`$ | $`2.81\times10^{-2}`$ | $`4.53\times10^{-3}`$ | $`2.16\times10^{-3}`$ | $`1.48\times10^{-4}`$ |
-| local, exact: mean fidelity | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
-| local, exact: fraction with $`F>0.9`$ | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
-| local: mean $`\|\nabla C\|`$ at init | $`2.36\times10^{-1}`$ | $`1.92\times10^{-1}`$ | $`1.59\times10^{-1}`$ | $`1.42\times10^{-1}`$ | $`1.30\times10^{-1}`$ | $`1.22\times10^{-1}`$ |
-| global, $`10^4`$ shots: mean fidelity | 0.999 | 0.999 | 0.999 | 0.916 | 0.746 | 0.250 |
-| global, $`10^4`$ shots: fraction with $`F>0.9`$ | 1.00 | 1.00 | 1.00 | 0.92 | 0.75 | 0.25 |
-| local, $`10^4`$ shots: mean fidelity | 0.998 | 0.994 | 0.991 | 0.984 | 0.974 | 0.967 |
-| local, $`10^4`$ shots: fraction with $`F>0.9`$ | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
-
-E5 summary. 16 seeds for exact gradients (10 for the local cost at $`n=14`$), 12 seeds with shot noise.
+<table>
+<caption>E5 summary. 16 seeds for exact gradients (10 for the local cost at <span class="math inline"><em>n</em> = 14</span>), 12 seeds with shot noise.</caption>
+<thead>
+<tr>
+<th style="text-align: left;"><span class="math inline"><em>n</em></span></th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">8</th>
+<th style="text-align: center;">10</th>
+<th style="text-align: center;">12</th>
+<th style="text-align: center;">14</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="7" style="text-align: left;"><em>global cost, exact gradients</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean fidelity</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">  fraction with <span class="math inline"><em>F</em> &gt; 0.9</span></td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean <span class="math inline">∥∇<em>C</em>∥</span> at initialisation</td>
+<td style="text-align: center;">0.16</td>
+<td style="text-align: center;">0.046</td>
+<td style="text-align: center;">0.028</td>
+<td style="text-align: center;">0.0045</td>
+<td style="text-align: center;">0.0022</td>
+<td style="text-align: center;">0.00015</td>
+</tr>
+<tr>
+<td colspan="7" style="text-align: left;"><em>local cost, exact gradients</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean fidelity</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">  fraction with <span class="math inline"><em>F</em> &gt; 0.9</span></td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean <span class="math inline">∥∇<em>C</em>∥</span> at initialisation</td>
+<td style="text-align: center;">0.24</td>
+<td style="text-align: center;">0.19</td>
+<td style="text-align: center;">0.16</td>
+<td style="text-align: center;">0.14</td>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">0.12</td>
+</tr>
+<tr>
+<td colspan="7" style="text-align: left;"><em>global cost, <span class="math inline">10<sup>4</sup></span> shots</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean fidelity</td>
+<td style="text-align: center;">0.999</td>
+<td style="text-align: center;">0.999</td>
+<td style="text-align: center;">0.999</td>
+<td style="text-align: center;">0.916</td>
+<td style="text-align: center;">0.746</td>
+<td style="text-align: center;">0.250</td>
+</tr>
+<tr>
+<td style="text-align: left;">  fraction with <span class="math inline"><em>F</em> &gt; 0.9</span></td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">0.92</td>
+<td style="text-align: center;">0.75</td>
+<td style="text-align: center;">0.25</td>
+</tr>
+<tr>
+<td colspan="7" style="text-align: left;"><em>local cost, <span class="math inline">10<sup>4</sup></span> shots</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  mean fidelity</td>
+<td style="text-align: center;">0.998</td>
+<td style="text-align: center;">0.994</td>
+<td style="text-align: center;">0.991</td>
+<td style="text-align: center;">0.984</td>
+<td style="text-align: center;">0.974</td>
+<td style="text-align: center;">0.967</td>
+</tr>
+<tr>
+<td style="text-align: left;">  fraction with <span class="math inline"><em>F</em> &gt; 0.9</span></td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -206,19 +401,139 @@ For the HEA the normalised variance decays with exponent $`-1`$; for QAOA at fix
 
 <div id="tab:dla">
 
-| family / $`n`$ | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
-|:---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| $`4^n-1`$ | 15 | 63 | 255 | 1023 | 4095 | 16383 | 65535 | 262143 | 1048575 |
-| HEA $`\{X_i,Y_i,Z_iZ_{i+1}\}`$ | 15 | 63 | 255 | 1023 | 4095 | 16383 | – | – | – |
-| HEA $`\{Y_i,Z_iZ_{i+1}\}`$ | 6 | 15 | 28 | 45 | 66 | 91 | 120 | – | – |
-| QAOA MaxCut | – | – | 15 | – | 176 | – | – | – | – |
-| HVA TFIM | 4 | 9 | 16 | 25 | 36 | 49 | 64 | 81 | 100 |
-| HEA $`\{X_i,Y_i,Z_iZ_{i+1}\}`$ (meas./pred.) | 1.09 | 0.94 | 1.04 | 0.96 | 1.11 | 0.89 | – | – | – |
-| HEA $`\{Y_i,Z_iZ_{i+1}\}`$ (meas./pred.) | 1.00 | 1.08 | 1.02 | 1.03 | 1.06 | 0.94 | 0.98 | – | – |
-| QAOA MaxCut (meas./pred.) | – | – | 0.60 | – | 0.59 | – | – | – | – |
-| HVA TFIM (meas./pred.) | 0.32 | 1.22 | 0.86 | 1.00 | 1.00 | 1.03 | 0.91 | 1.03 | 0.94 |
-
-E7: DLA dimensions and the ratio of the measured to the predicted cost variance.
+<table>
+<caption>E7: DLA dimensions and the ratio of the measured to the predicted cost variance.</caption>
+<thead>
+<tr>
+<th style="text-align: left;">family / <span class="math inline"><em>n</em></span></th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">7</th>
+<th style="text-align: center;">8</th>
+<th style="text-align: center;">9</th>
+<th style="text-align: center;">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="10" style="text-align: left;"><em>DLA dimension</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  <span class="math inline">4<sup><em>n</em></sup> − 1</span></td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">255</td>
+<td style="text-align: center;">1023</td>
+<td style="text-align: center;">4095</td>
+<td style="text-align: center;">16383</td>
+<td style="text-align: center;">65535</td>
+<td style="text-align: center;">262143</td>
+<td style="text-align: center;">1048575</td>
+</tr>
+<tr>
+<td style="text-align: left;">  HEA <span class="math inline">{<em>X</em><sub><em>i</em></sub>, <em>Y</em><sub><em>i</em></sub>, <em>Z</em><sub><em>i</em></sub><em>Z</em><sub><em>i</em> + 1</sub>}</span></td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">255</td>
+<td style="text-align: center;">1023</td>
+<td style="text-align: center;">4095</td>
+<td style="text-align: center;">16383</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr>
+<td style="text-align: left;">  HEA <span class="math inline">{<em>Y</em><sub><em>i</em></sub>, <em>Z</em><sub><em>i</em></sub><em>Z</em><sub><em>i</em> + 1</sub>}</span></td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">66</td>
+<td style="text-align: center;">91</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr>
+<td style="text-align: left;">  QAOA MaxCut</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">176</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr>
+<td style="text-align: left;">  HVA TFIM</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">81</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td colspan="10" style="text-align: left;"><em>measured / predicted <span class="math inline">Var[<em>C</em>]</span></em></td>
+</tr>
+<tr>
+<td style="text-align: left;">  HEA <span class="math inline">{<em>X</em><sub><em>i</em></sub>, <em>Y</em><sub><em>i</em></sub>, <em>Z</em><sub><em>i</em></sub><em>Z</em><sub><em>i</em> + 1</sub>}</span></td>
+<td style="text-align: center;">1.09</td>
+<td style="text-align: center;">0.94</td>
+<td style="text-align: center;">1.04</td>
+<td style="text-align: center;">0.96</td>
+<td style="text-align: center;">1.11</td>
+<td style="text-align: center;">0.89</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr>
+<td style="text-align: left;">  HEA <span class="math inline">{<em>Y</em><sub><em>i</em></sub>, <em>Z</em><sub><em>i</em></sub><em>Z</em><sub><em>i</em> + 1</sub>}</span></td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.08</td>
+<td style="text-align: center;">1.02</td>
+<td style="text-align: center;">1.03</td>
+<td style="text-align: center;">1.06</td>
+<td style="text-align: center;">0.94</td>
+<td style="text-align: center;">0.98</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr>
+<td style="text-align: left;">  QAOA MaxCut</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">0.60</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">0.59</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr>
+<td style="text-align: left;">  HVA TFIM</td>
+<td style="text-align: center;">0.32</td>
+<td style="text-align: center;">1.22</td>
+<td style="text-align: center;">0.86</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.03</td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">1.03</td>
+<td style="text-align: center;">0.94</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -257,7 +572,8 @@ Write the circuit around a rotation with Pauli generator $`G`$ ($`\mathrm{Tr}G=0
 with $`i[G,A]`$ and $`K`$ Hermitian and traceless. We use the standard second moments of a Haar-random pure state $`\sigma`$ in dimension $`d`$, $`\mathbb{E}_\sigma[\mathrm{Tr}(B\sigma)^2]=\big[(\mathrm{Tr}B)^2+\mathrm{Tr}B^2\big]/(d(d+1))`$, and of a Haar-random unitary,
 ``` math
 \begin{align}
-\mathbb{E}_U\mathrm{Tr}(UAU^\dagger B\,UCU^\dagger D)&=\frac{\mathrm{Tr}A\mathrm{Tr}C\mathrm{Tr}(BD)+\mathrm{Tr}(AC)\mathrm{Tr}B\mathrm{Tr}D}{d^2-1}-\frac{\mathrm{Tr}A\mathrm{Tr}C\mathrm{Tr}B\mathrm{Tr}D+\mathrm{Tr}(AC)\mathrm{Tr}(BD)}{d(d^2-1)},\qquad\text{(5)}\\
+\mathbb{E}_U\mathrm{Tr}(UAU^\dagger B\,UCU^\dagger D)&=\frac{\mathrm{Tr}A\mathrm{Tr}C\mathrm{Tr}(BD)+\mathrm{Tr}(AC)\mathrm{Tr}B\mathrm{Tr}D}{d^2-1}\nonumber\\
+&\qquad-\frac{\mathrm{Tr}A\mathrm{Tr}C\mathrm{Tr}B\mathrm{Tr}D+\mathrm{Tr}(AC)\mathrm{Tr}(BD)}{d(d^2-1)},\qquad\text{(5)}\\
 \mathbb{E}_U\big[\mathrm{Tr}(UAU^\dagger B)\big]^2&=\frac{(\mathrm{Tr}A)^2(\mathrm{Tr}B)^2+\mathrm{Tr}A^2\mathrm{Tr}B^2}{d^2-1}-\frac{(\mathrm{Tr}A)^2\mathrm{Tr}B^2+\mathrm{Tr}A^2(\mathrm{Tr}B)^2}{d(d^2-1)} .\qquad\text{(6)}
 \end{align}
 ```
@@ -305,11 +621,14 @@ which is Eq. ([2](#eq:haar2)): $`\approx 1/(2d)`$ for a traceless Pauli string 
 <tr>
 <td style="text-align: center;"><span class="math inline"><em>n</em></span></td>
 <td style="text-align: center;">simulated</td>
-<td style="text-align: center;">Eq. <a href="#eq:haar2" data-reference-type="eqref" data-reference="eq:haar2">[eq:haar2]</a></td>
+<td style="text-align: center;">Eq. (<a href="#eq:haar2">2</a>)</td>
 <td style="text-align: center;">simulated</td>
-<td style="text-align: center;">Eq. <a href="#eq:haarL" data-reference-type="eqref" data-reference="eq:haarL">[eq:haarL]</a></td>
+<td style="text-align: center;">Eq. (<a href="#eq:haarL">7</a>)</td>
 <td style="text-align: center;">simulated</td>
-<td style="text-align: center;">Eq. <a href="#eq:haarR" data-reference-type="eqref" data-reference="eq:haarR">[eq:haarR]</a></td>
+<td style="text-align: center;">Eq. (<a href="#eq:haarR">8</a>)</td>
+</tr>
+<tr>
+<td colspan="7" style="text-align: left;"><span class="math inline"><em>H</em> = <em>Z</em><sup>⊗<em>n</em></sup></span></td>
 </tr>
 <tr>
 <td style="text-align: center;">2</td>
@@ -373,6 +692,9 @@ which is Eq. ([2](#eq:haar2)): $`\approx 1/(2d)`$ for a traceless Pauli string 
 <td style="text-align: center;"><span class="math inline">1.95 × 10<sup>−3</sup></span></td>
 <td style="text-align: center;"><span class="math inline">3.79 × 10<sup>−3</sup></span></td>
 <td style="text-align: center;"><span class="math inline">3.89 × 10<sup>−3</sup></span></td>
+</tr>
+<tr>
+<td colspan="7" style="text-align: left;"><span class="math inline"><em>H</em> = |0⟩⟨0|<sup>⊗<em>n</em></sup></span></td>
 </tr>
 <tr>
 <td style="text-align: center;">2</td>
@@ -454,9 +776,9 @@ Sweeping $`k`$ from $`M`$ down to $`1`$ while applying $`U_k^\dagger`$ to both $
 
 # Reproduction
 
-    pip install -e ".[dev]"              # add ",compare" for the PennyLane cross-checks
+    pip install -e ".[dev]"              # or ".[dev,compare]" for PennyLane checks
     python -m pytest -q                  # 58 tests
-    BUDGET=100000 bash experiments/run_all.sh   # all experiments (results/*.json, ~1 CPU hour)
+    BUDGET=100000 bash experiments/run_all.sh   # all experiments, ~1 CPU hour
     python analysis/make_figures.py      # paper/figures/*.pdf, results/figures/*.png
     python analysis/make_tables.py       # paper/tables/*.tex
     bash paper/build.sh                  # PDF, web reader, Markdown mirror

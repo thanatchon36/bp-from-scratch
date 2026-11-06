@@ -4,7 +4,8 @@ pandoc reads main.tex directly but mishandles three constructs that this paper u
 math (not converted), the inline `thebibliography` (all entries merged into one paragraph) and
 `\\cite` (empty spans without a .bib file). This module rewrites them into equivalents pandoc
 understands: `\\mathrm{x}`, a numbered list with `ref-<key>` anchors, and `[n]` links that follow the
-PDF's numbering (order of the `\\bibitem`s).
+PDF's numbering (order of the `\\bibitem`s). The generated tables are inlined first, so the same
+rewrites reach them, and the booktabs commands pandoc cannot render are dropped from them.
 """
 
 from __future__ import annotations
@@ -15,6 +16,9 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 BIB = re.compile(r"\\begin\{thebibliography\}\{[^}]*\}(.*?)\\end\{thebibliography\}", re.S)
 ABSTRACT = re.compile(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", re.S)
+INPUT = re.compile(r"\\input\{([^}]+)\}")
+# \cmidrule leaks its arguments into the first cell and \addlinespace swallows the row after it.
+BOOKTABS = re.compile(r"\\cmidrule(?:\([^)]*\))?\{[^}]*\}|\\addlinespace(?:\[[^\]]*\])?")
 
 
 def read_main() -> str:
@@ -46,9 +50,24 @@ def bib_keys(tex: str) -> list[tuple[str, str]]:
     return re.findall(r"\\bibitem\{([^}]+)\}(.*?)(?=\\bibitem|\Z)", m.group(1), re.S)
 
 
+def inline_inputs(tex: str) -> str:
+    """Replace \\input{file} by the file (the generated tables), minus the booktabs rules pandoc
+    cannot render; the \\quad that indents grouped rows becomes two non-breaking spaces."""
+
+    def sub(m: re.Match[str]) -> str:
+        path = HERE / m.group(1)
+        if not path.suffix:
+            path = path.with_suffix(".tex")
+        body = BOOKTABS.sub("", path.read_text(encoding="utf-8"))
+        return body.replace("\\quad ", "~~")
+
+    return INPUT.sub(sub, tex)
+
+
 def prepare(tex: str, *, keep_abstract: bool) -> str:
     """Return main.tex rewritten for pandoc. The title block is dropped (the callers render it);
     the abstract becomes an unnumbered section or is removed."""
+    tex = BOOKTABS.sub("", inline_inputs(tex))
     entries = bib_keys(tex)
     number = {key: i for i, (key, _) in enumerate(entries, start=1)}
 
